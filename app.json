@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.qfa.qfastack"
+      "bundleIdentifier": "com.qfa.qfastack",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -50,8 +53,6 @@
     "updates": {
       "url": "https://u.expo.dev/332411a7-a270-42d8-aa9d-e06cf080103c"
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    }
+    "runtimeVersion": "1.0.0"
   }
 }

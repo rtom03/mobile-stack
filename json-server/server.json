@@ -1,0 +1,91 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "name": "Krispy Kreme",
+      "ranking": 1,
+      "branchNumber": "CR-001",
+      "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187637/kk_d6pmfd.jpg",
+      "likes": 245,
+      "ratings": 97,
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429871/imgi_138_9a03412985c8689b333b784c8f27e6e6_xowdxr.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Dodo Pizza",
+      "ranking": 2,
+      "branchNumber": "DP-002",
+      "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187623/dodo2_jlht5s.png",
+      "likes": 310,
+      "ratings": 97,
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429891/imgi_729_0195b36f1078739680afc55a7595885d_xnuggr.png"
+    },
+    {
+      "id": 3,
+      "name": "Scoop'd Ice Cream Bar",
+      "ranking": 3,
+      "branchNumber": "DP-002",
+      "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187654/scoopd_lkyqoa.png",
+      "likes": 310,
+      "ratings": 97,
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429869/imgi_86_1ebf497c16d5f38273a1b76ea2e46749_rqvdig.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Burger Nation",
+      "ranking": 4,
+      "branchNumber": "DP-002",
+      "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187613/bn_stm95o.png",
+      "likes": 310,
+      "ratings": 97,
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429868/imgi_44_b1c7d11833ba5886ba94a079d2c61144_qko9cs.jpg"
+    }
+  ],
+
+  "items": [
+    {
+      "id": 1,
+      "createdBy": 1,
+      "name": "LATTE 8oz",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190098/imgi_3_42534f17dfceb26f9246ae52c55c8487_hjbcha.png",
+      "price": 3500
+    },
+    {
+      "id": 2,
+      "createdBy": 1,
+      "name": "ASSORTED",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190093/imgi_6_ed98bf17c2350724afaf32aa9a1e697b_lfwt3v.jpg",
+      "price": 21000
+    },
+    {
+      "id": 3,
+      "createdBy": 1,
+      "name": "JOY BOX OG",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_3_a5d01a7f4757ea9ab30212daffc169de_jjn47s.jpg",
+      "price": 4400
+    },
+
+    {
+      "id": 5,
+      "createdBy": 2,
+      "name": "Dodo BBQ",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_737_11ef1cfefac2305bb20b0b2349b787d9_p9myix.webp",
+      "price": 10600
+    },
+    {
+      "id": 7,
+      "createdBy": 2,
+      "name": "Sweet Chili Chicken",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190094/imgi_740_11ee86927844f9a1abaa10c6cf62f3ef_rfcd6i.webp",
+      "price": 18900
+    },
+    {
+      "id": 8,
+      "createdBy": 2,
+      "name": "Shawarma Pizza",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190096/imgi_739_11ee8693dfbd5d18a07180472cfacf06_dnrwum.webp",
+      "price": 18900
+    }
+  ],
+  "orders": []
+}
