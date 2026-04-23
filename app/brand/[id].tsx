@@ -48,8 +48,6 @@ export default function DetailsScreen() {
     getItemByBrand();
   }, [brandId]);
 
-  const tabs = ["Top sellers", "Deals", "All items"];
-
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <Stack.Screen options={{ headerShown: false }} />
@@ -265,7 +263,7 @@ export default function DetailsScreen() {
           }}
         >
           <ScrollView
-            ref={tabScrollRef}
+            // ref={tabScrollRef}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 12 }}
