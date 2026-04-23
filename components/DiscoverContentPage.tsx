@@ -1,15 +1,12 @@
 import { ORANGE } from "@/constants";
 import { Brand } from "@/constants/idx.type";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useRef } from "react";
-import {
-  Animated,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Animated, Pressable, View } from "react-native";
+import { AppText } from "./AppText";
+import LocationNav from "./LocationNav";
 import RestaurantRankingList from "./RestaurantRankList";
+import { SafeScreen } from "./SafeScreen";
 
 // ─── constants ────────────────────────────────────────────────────────────────
 const HERO_HEIGHT = 240; // full height of orange section
@@ -81,31 +78,32 @@ export default function DiscoverContent({
       </View>
 
       {/* LAYER 2 — Scrollable content */}
-      <Animated.ScrollView
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false },
-        )}
-        scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
-        style={{ flex: 1 }}
-        contentContainerStyle={{
-          paddingTop: HERO_HEIGHT - 28,
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: "#fff",
-            borderTopLeftRadius: 28,
-            borderTopRightRadius: 28,
-            paddingTop: 40,
-            paddingHorizontal: 16,
-            paddingBottom: 50,
+      <SafeScreen>
+        <Animated.ScrollView
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: false },
+          )}
+          scrollEventThrottle={16}
+          showsVerticalScrollIndicator={false}
+          style={{ flex: 1 }}
+          contentContainerStyle={{
+            paddingTop: HERO_HEIGHT - 28,
           }}
         >
-          <RestaurantRankingList brands={brands} />
-        </View>
-      </Animated.ScrollView>
+          <View
+            style={{
+              backgroundColor: "#fff",
+              // borderTopLeftRadius: 28,
+              // borderTopRightRadius: 28,
+              paddingTop: 40,
+              paddingHorizontal: 16,
+            }}
+          >
+            <RestaurantRankingList brands={brands} />
+          </View>
+        </Animated.ScrollView>
+      </SafeScreen>
 
       {/* LAYER 3 — Hero text overlay, fades on scroll */}
       <Animated.View
@@ -120,26 +118,7 @@ export default function DiscoverContent({
           paddingHorizontal: 20,
         }}
       >
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            alignSelf: "center",
-            backgroundColor: "#fff",
-            borderRadius: 24,
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-            marginTop: 40,
-            marginBottom: 16,
-            gap: 6,
-          }}
-        >
-          <Text style={{ fontSize: 15, fontWeight: "600", color: "#1a1a1a" }}>
-            Obafemi Awolowo Way
-          </Text>
-          <AntDesign name="down" size={14} color="black" />
-        </TouchableOpacity>
-
+        <LocationNav />
         <View
           style={{
             flexDirection: "row",
@@ -147,10 +126,10 @@ export default function DiscoverContent({
             justifyContent: "space-between",
           }}
         >
-          <Text style={{ fontSize: 34, fontWeight: "800", color: "#fff" }}>
+          <AppText variant="h1" style={{ color: "#fff" }}>
             Discover
-          </Text>
-          <Text style={{ fontSize: 80, marginBottom: -14 }}>🔍</Text>
+          </AppText>
+          {/* <AppText style={{ fontSize: 80, marginBottom: -14 }}>🔍</AppText> */}
         </View>
       </Animated.View>
 
@@ -167,7 +146,7 @@ export default function DiscoverContent({
           top: 0,
           left: 0,
           right: 0,
-          height: SEARCH_TOP + 45,
+          height: SEARCH_TOP + 10,
           backgroundColor: "#fff",
           opacity: headerBgOpacity,
           zIndex: 9,
@@ -206,6 +185,7 @@ export default function DiscoverContent({
             borderWidth: 1,
             borderColor: "#e0e0e0",
             position: "absolute",
+            top: -35,
           })}
         >
           <Ionicons
@@ -214,9 +194,9 @@ export default function DiscoverContent({
             color="#999"
             style={{ marginRight: 8 }}
           />
-          <Text style={{ fontSize: 14, color: "#aaa", flex: 1 }}>
+          <AppText style={{ fontSize: 14, color: "#aaa", flex: 1 }}>
             Search in Discover
-          </Text>
+          </AppText>
         </Pressable>
       </Animated.View>
     </View>

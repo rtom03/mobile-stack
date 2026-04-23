@@ -1,5 +1,9 @@
 export type BadgeType = "discount" | "prime" | null;
 
+export interface Category {
+  id: number;
+  name: string;
+}
 export interface Brand {
   id: string;
   name: string;
@@ -11,5 +15,6 @@ export interface Brand {
   badgeType: BadgeType;
   badgeText: string | null;
   length: number;
+  category: Category[];
 }
 [];

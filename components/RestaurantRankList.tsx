@@ -2,6 +2,7 @@ import { Brand } from "@/constants/idx.type";
 import { router } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { AppText } from "./AppText";
 
 export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
   return (
@@ -20,7 +21,7 @@ export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
       >
         <Text style={{ fontSize: 36 }}>⭐</Text>
         <View style={{ flex: 1 }}>
-          <Text
+          <AppText
             style={{
               fontSize: 15,
               fontWeight: "700",
@@ -29,24 +30,23 @@ export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
             }}
           >
             Need ideas?
-          </Text>
-          <Text style={{ fontSize: 13, color: "#555", lineHeight: 19 }}>
+          </AppText>
+          <AppText style={{ color: "#555", lineHeight: 19 }}>
             Find trending spots, hidden gems, and places your friends love.
-          </Text>
+          </AppText>
         </View>
       </View>
 
       {/* Section title */}
-      <Text
+      <AppText
+        variant="h2"
         style={{
-          fontSize: 20,
-          fontWeight: "800",
           color: "#1a1a1a",
           marginBottom: 16,
         }}
       >
         Most in demand
-      </Text>
+      </AppText>
 
       {/* Brand rows — plain map, no scroll conflict */}
       {brands.map((item) => (
@@ -75,22 +75,21 @@ export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
                 brand_icon: item.brand_icon,
                 hero_img: item.hero_img,
                 ratings: item.ratings,
+                category: JSON.stringify(item.category),
               },
             })
           }
         >
           {/* Rank number */}
-          <Text
+          <AppText
             style={{
-              fontSize: 22,
-              fontWeight: "800",
               color: "#1a1a1a",
               width: 28,
               textAlign: "center",
             }}
           >
             {item.ranking}
-          </Text>
+          </AppText>
 
           {/* Brand icon */}
           <View
@@ -113,23 +112,24 @@ export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
 
           {/* Name + rating */}
           <View style={{ flex: 1 }}>
-            <Text
+            <AppText
+              variant="span"
               style={{
-                fontSize: 16,
-                fontWeight: "700",
                 color: "#1a1a1a",
                 marginBottom: 4,
               }}
             >
               {item.name}
-            </Text>
+            </AppText>
             <View
               style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
             >
-              <Text style={{ fontSize: 14 }}>👍</Text>
-              <Text style={{ fontSize: 14, fontWeight: "600", color: "#444" }}>
+              <AppText style={{ fontSize: 14 }}>👍</AppText>
+              <AppText
+                style={{ fontSize: 14, fontWeight: "600", color: "#444" }}
+              >
                 {item.ratings}%
-              </Text>
+              </AppText>
             </View>
           </View>
         </TouchableOpacity>

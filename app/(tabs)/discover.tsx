@@ -1,7 +1,7 @@
 import DiscoverContent from "@/components/DiscoverContentPage";
 import { FullSearchPage } from "@/components/FullSearchPage";
 import { ORANGE } from "@/constants";
-import { getAllBrands } from "@/constants/services/api";
+import { getAllBrands } from "@/services/api";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, SafeAreaView, View } from "react-native";
 

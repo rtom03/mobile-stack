@@ -1,4 +1,5 @@
-import { getBrandById, getItemsByBrand } from "@/constants/services/api";
+import { AppText } from "@/components/AppText";
+import { getBrandById, getItemsByBrand } from "@/services/api";
 import React, { useRef, useState } from "react";
 import {
   Dimensions,
@@ -91,9 +92,11 @@ function CategoryIcon({
           { backgroundColor: active ? "#fff" : "rgba(255,255,255,0.35)" },
         ]}
       >
-        <Text style={styles.categoryEmoji}>{item.emoji}</Text>
+        <Text>{item.emoji}</Text>
       </View>
-      <Text style={styles.categoryLabel}>{item.label}</Text>
+      <AppText variant="span" style={styles.categoryLabel}>
+        {item.label}
+      </AppText>
     </TouchableOpacity>
   );
 }
@@ -111,14 +114,16 @@ function RestaurantCard({ item }: { item: (typeof CAROUSEL_ITEMS)[0] }) {
 
       {/* Info */}
       <View style={styles.cardInfo}>
-        <Text style={styles.cardName} numberOfLines={1}>
+        <AppText variant="span" style={styles.cardName} numberOfLines={1}>
           {item.name}
-        </Text>
-        <Text style={[styles.cardTag, { color: item.color }]}>{item.tag}</Text>
+        </AppText>
+        <AppText style={[styles.cardTag, { color: item.color }]}>
+          {item.tag}
+        </AppText>
         <View style={styles.cardMeta}>
-          <Text style={styles.cardMetaText}>⭐ {item.rating}</Text>
+          <AppText style={styles.cardMetaText}>⭐ {item.rating}</AppText>
           <View style={styles.cardDot} />
-          <Text style={styles.cardMetaText}>⏱ {item.time}</Text>
+          <AppText style={styles.cardMetaText}>⏱ {item.time}</AppText>
         </View>
       </View>
     </TouchableOpacity>
@@ -185,19 +190,23 @@ export default function HomeScreen() {
             }}
             activeOpacity={0.8}
           >
-            <Text style={styles.locationPin}>📍</Text>
-            <Text style={styles.locationText} numberOfLines={1}>
+            <AppText style={styles.locationPin}>📍</AppText>
+            <AppText style={styles.locationText} numberOfLines={1}>
               Ak… Ogunlewe Road, 310B
-            </Text>
-            <Text style={styles.locationChevron}>▾</Text>
+            </AppText>
+            <AppText style={styles.locationChevron}>▾</AppText>
           </TouchableOpacity>
         </View>
 
         {/* ── Hero Wave Section ── */}
         <View style={styles.hero}>
           {/* Greeting */}
-          <Text style={styles.heroGreeting}>Good afternoon 👋</Text>
-          <Text style={styles.heroSubtitle}>What are you craving today?</Text>
+          <AppText style={styles.heroGreeting} variant="h2">
+            Good afternoon 👋
+          </AppText>
+          <AppText style={styles.heroSubtitle}>
+            What are you craving today?
+          </AppText>
 
           {/* Categories Grid */}
           <View style={styles.categoryRow}>
@@ -218,9 +227,11 @@ export default function HomeScreen() {
         {/* ── For You Section ── */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>These are for you</Text>
+            <AppText style={styles.sectionTitle} variant="h2">
+              These are for you
+            </AppText>
             <TouchableOpacity>
-              <Text style={styles.sectionSeeAll}>See all →</Text>
+              <AppText style={styles.sectionSeeAll}>See all →</AppText>
             </TouchableOpacity>
           </View>
 
@@ -255,13 +266,13 @@ export default function HomeScreen() {
         <View style={styles.bannerWrapper}>
           <View style={styles.banner}>
             <View style={styles.bannerText}>
-              <Text style={styles.bannerTitle}>
+              <AppText style={styles.bannerTitle}>
                 🛵 Free delivery in the
-                <Text style={styles.bannerHighlight}>WHOLE app</Text>
-              </Text>
-              <Text style={styles.bannerSub}>No minimum purchase</Text>
+                <AppText style={styles.bannerHighlight}>WHOLE app</AppText>
+              </AppText>
+              <AppText style={styles.bannerSub}>No minimum purchase</AppText>
             </View>
-            <Text style={styles.bannerEmoji}>📦</Text>
+            <AppText style={styles.bannerEmoji}>📦</AppText>
           </View>
         </View>
       </ScrollView>
@@ -310,8 +321,7 @@ const styles = StyleSheet.create({
   locationPin: { fontSize: 14 },
   locationText: {
     flex: 1,
-    fontSize: 14,
-    fontWeight: "700",
+
     color: "#1A1A1A",
     letterSpacing: -0.2,
   },
@@ -325,17 +335,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   heroGreeting: {
-    fontSize: 22,
-    fontWeight: "800",
     color: "#fff",
     marginBottom: 2,
     letterSpacing: -0.5,
   },
   heroSubtitle: {
-    fontSize: 14,
     color: "rgba(255,255,255,0.82)",
     marginBottom: 24,
-    fontWeight: "500",
   },
   categoryRow: {
     flexDirection: "row",
@@ -363,10 +369,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 6,
   },
-  categoryEmoji: { fontSize: 30 },
   categoryLabel: {
-    fontSize: 12,
-    fontWeight: "700",
     color: "#fff",
     letterSpacing: 0.2,
     textAlign: "center",
@@ -394,15 +397,11 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: "800",
     color: "#1A1A1A",
     letterSpacing: -0.4,
   },
   sectionSeeAll: {
-    fontSize: 13,
     color: "#F9A825",
-    fontWeight: "700",
   },
 
   // Carousel
@@ -428,15 +427,11 @@ const styles = StyleSheet.create({
   cardHeroEmoji: { fontSize: 54 },
   cardInfo: { padding: 12 },
   cardName: {
-    fontSize: 14,
-    fontWeight: "800",
     color: "#1A1A1A",
     marginBottom: 3,
     letterSpacing: -0.3,
   },
   cardTag: {
-    fontSize: 12,
-    fontWeight: "600",
     marginBottom: 6,
   },
   cardMeta: {
@@ -445,9 +440,7 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   cardMetaText: {
-    fontSize: 11,
     color: "#888",
-    fontWeight: "500",
   },
   cardDot: {
     width: 3,
@@ -491,15 +484,12 @@ const styles = StyleSheet.create({
   },
   bannerText: { flex: 1 },
   bannerTitle: {
-    fontSize: 14,
-    fontWeight: "700",
     color: "#1A1A1A",
     marginBottom: 3,
     lineHeight: 20,
   },
   bannerHighlight: { color: "#F9A825", fontWeight: "900" },
   bannerSub: {
-    fontSize: 12,
     color: "#888",
     fontWeight: "500",
   },
@@ -529,15 +519,11 @@ const styles = StyleSheet.create({
   },
   listCardInfo: { flex: 1 },
   listCardName: {
-    fontSize: 15,
-    fontWeight: "800",
     color: "#1A1A1A",
     marginBottom: 2,
     letterSpacing: -0.3,
   },
   listCardTag: {
-    fontSize: 12,
-    fontWeight: "600",
     marginBottom: 4,
   },
   listCardBadge: {
@@ -548,8 +534,7 @@ const styles = StyleSheet.create({
   },
   listCardBadgeText: {
     color: "#fff",
-    fontSize: 12,
-    fontWeight: "800",
+
     letterSpacing: 0.3,
   },
 
@@ -589,9 +574,7 @@ const styles = StyleSheet.create({
   },
   navEmoji: { fontSize: 20 },
   navLabel: {
-    fontSize: 11,
     color: "#BBBBBBB",
-    fontWeight: "600",
   },
   navLabelActive: {
     color: "#F9A825",
