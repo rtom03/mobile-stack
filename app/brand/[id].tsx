@@ -2,7 +2,7 @@ import { Category } from "@/constants/idx.type";
 import { getItemsByBrand } from "@/services/api";
 import { Ionicons } from "@expo/vector-icons";
 import { router, Stack, useLocalSearchParams } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 interface Item {
@@ -31,7 +31,7 @@ export default function DetailsScreen() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-  const tabScrollRef = useRef<ScrollView>(null);
+  // const tabScrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     const getItemByBrand = async () => {
