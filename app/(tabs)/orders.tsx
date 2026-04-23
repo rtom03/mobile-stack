@@ -1,3 +1,4 @@
+import { AppText } from "@/components/AppText";
 import React from "react";
 import {
   SafeAreaView,
@@ -36,7 +37,7 @@ export default function OrdersScreen() {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         {/* Title */}
-        <Text
+        <AppText
           style={{
             fontSize: 28,
             fontWeight: "800",
@@ -48,7 +49,7 @@ export default function OrdersScreen() {
           }}
         >
           Orders
-        </Text>
+        </AppText>
 
         {/* Track Orders Card */}
         <View
@@ -73,9 +74,9 @@ export default function OrdersScreen() {
               marginBottom: 12,
             }}
           >
-            <Text style={{ fontSize: 30 }}>📦</Text>
+            <AppText style={{ fontSize: 30 }}>📦</AppText>
           </View>
-          <Text
+          <AppText
             style={{
               fontSize: 16,
               fontWeight: "700",
@@ -84,18 +85,20 @@ export default function OrdersScreen() {
             }}
           >
             Track your orders
-          </Text>
-          <Text style={{ fontSize: 13, color: "#888", textAlign: "center" }}>
+          </AppText>
+          <AppText style={{ fontSize: 13, color: "#888", textAlign: "center" }}>
             Your ongoing orders will be listed here
-          </Text>
+          </AppText>
         </View>
 
         {/* Continue your order */}
         <View style={{ paddingHorizontal: 20, marginBottom: 12 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-            <Text style={{ fontSize: 20, fontWeight: "800", color: "#1a1a1a" }}>
+            <AppText
+              style={{ fontSize: 20, fontWeight: "800", color: "#1a1a1a" }}
+            >
               Continue your order
-            </Text>
+            </AppText>
             <View
               style={{
                 backgroundColor: "#e8e8e8",

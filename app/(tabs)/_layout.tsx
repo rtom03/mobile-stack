@@ -3,19 +3,10 @@ import React from "react";
 
 import TabBackground from "@/components/ui/TabBarBackground";
 import { Fonts } from "@/constants/fonts";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { FontAwesome6, Fontisto } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const NAV_TABS = [
-    { id: "home", label: "Home", emoji: "🏠" },
-    { id: "discover", label: "Discover", emoji: "🔍" },
-    { id: "orders", label: "Orders", emoji: "🛍️" },
-    { id: "profile", label: "Profile", emoji: "👤" },
-  ];
-
   return (
     <Tabs
       screenOptions={{
