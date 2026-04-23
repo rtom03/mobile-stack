@@ -2,11 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
   Pressable,
-  Text,
+  // AppText,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import { AppText } from "./AppText";
 
 interface FullSearchProps {
   search: string;
@@ -35,7 +36,7 @@ export function FullSearchPage({
           flexDirection: "row",
           alignItems: "center",
           paddingHorizontal: 16,
-          paddingTop: 52, // safe-area-friendly top margin
+          paddingTop: 12, // safe-area-friendly top margin
           paddingBottom: 12,
           gap: 12,
         }}
@@ -90,16 +91,15 @@ export function FullSearchPage({
 
       {/* ── RECENT SEARCHES ─────────────────────────────────────────────── */}
       <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
-        <Text
+        <AppText
           style={{
-            fontSize: 20,
-            fontWeight: "800",
             color: "#1a1a1a",
             marginBottom: 16,
           }}
+          variant="h2"
         >
           Recent searches
-        </Text>
+        </AppText>
 
         {/* Chips — white bg + light border, matching screenshot */}
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
@@ -116,7 +116,9 @@ export function FullSearchPage({
                 borderColor: "#e0e0e0",
               }}
             >
-              <Text style={{ fontSize: 14, color: "#1a1a1a" }}>{item}</Text>
+              <AppText style={{ fontSize: 14, color: "#1a1a1a" }}>
+                {item}
+              </AppText>
             </TouchableOpacity>
           ))}
         </View>

@@ -1,10 +1,11 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, Text, TouchableOpacity } from "react-native";
 
-import { HapticTab } from "@/components/HapticTab";
-import TabBarBackground from "@/components/ui/TabBarBackground";
+import TabBackground from "@/components/ui/TabBarBackground";
+import { Fonts } from "@/constants/fonts";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { FontAwesome6, Fontisto } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -18,37 +19,39 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        // tabBarActiveTintColor: Colors[colorScheme ?? "dark"].tint,
         tabBarActiveTintColor: "rgb(248, 94, 17)",
-        // tabBarInactiveTintColor: "gray",
+        tabBarInactiveTintColor: "#8e8e93", // 👈 subtle iOS gray
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarButton: (props) => (
-          <TouchableOpacity {...props} activeOpacity={1} />
-        ),
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {
-            padding: 18,
-            height: 100,
-            borderTopWidth: 1,
-            alignItems: "center",
-            justifyContent: "center",
-          },
-        }),
+        tabBarBackground: () => <TabBackground />,
+        tabBarStyle: {
+          position: "absolute",
+          height: 70,
+          paddingBottom: 10,
+          paddingTop: 10,
+          // ❌ remove border
+          borderTopWidth: 0,
+          // ✅ shadow (iOS)
+          shadowColor: "#000",
+          shadowOpacity: 0.08,
+          shadowOffset: { width: 0, height: -2 },
+          shadowRadius: 8,
+
+          // ✅ shadow (Android)
+          elevation: 12,
+        },
+
         tabBarItemStyle: {
-          paddingVertical: 10,
+          justifyContent: "center",
+          alignItems: "center",
         },
+
         tabBarIconStyle: {
-          marginBottom: 4,
+          marginBottom: 2,
         },
+
         tabBarLabelStyle: {
-          textAlign: "center",
-          fontSize: 12,
+          fontFamily: Fonts.medium, // 👈 apply your font
+          fontSize: 11,
         },
       }}
     >
@@ -56,7 +59,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: () => <Text style={{ fontSize: 20 }}>🏠</Text>,
+          tabBarIcon: ({ color }) => (
+            <Feather name="home" size={24} color={color} />
+          ),
         }}
       />
 
@@ -64,7 +69,9 @@ export default function TabLayout() {
         name="discover"
         options={{
           title: "Discover",
-          tabBarIcon: () => <Text style={{ fontSize: 20 }}>🔍</Text>,
+          tabBarIcon: ({ color }) => (
+            <Feather name="search" size={24} color={color} />
+          ),
         }}
       />
 
@@ -72,7 +79,9 @@ export default function TabLayout() {
         name="orders"
         options={{
           title: "Orders",
-          tabBarIcon: () => <Text style={{ fontSize: 20 }}>🛍️</Text>,
+          tabBarIcon: ({ color }) => (
+            <Fontisto name="shopping-bag-1" size={24} color={color} />
+          ),
         }}
       />
 
@@ -80,7 +89,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: () => <Text style={{ fontSize: 20 }}>👤</Text>,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="user" size={24} color={color} />
+          ),
         }}
       />
     </Tabs>

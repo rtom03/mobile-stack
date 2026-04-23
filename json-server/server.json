@@ -8,7 +8,41 @@
       "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187637/kk_d6pmfd.jpg",
       "likes": 245,
       "ratings": 97,
-      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429871/imgi_138_9a03412985c8689b333b784c8f27e6e6_xowdxr.jpg"
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429871/imgi_138_9a03412985c8689b333b784c8f27e6e6_xowdxr.jpg",
+      "category": [
+        {
+          "id": 1,
+          "name": "Top Sellers"
+        },
+        {
+          "id": 2,
+          "name": "Deals"
+        },
+        {
+          "id": 3,
+          "name": "Doughnut Boxes"
+        },
+        {
+          "id": 4,
+          "name": "Top Sellers"
+        },
+        {
+          "id": 5,
+          "name": "Easter Special"
+        },
+        {
+          "id": 6,
+          "name": "Assorted Doughnuts"
+        },
+        {
+          "id": 7,
+          "name": "Pull Aparts"
+        },
+        {
+          "id": 8,
+          "name": "Hot Beverage"
+        }
+      ]
     },
     {
       "id": 2,
@@ -18,7 +52,41 @@
       "brand_icon": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774187623/dodo2_jlht5s.png",
       "likes": 310,
       "ratings": 97,
-      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429891/imgi_729_0195b36f1078739680afc55a7595885d_xnuggr.png"
+      "hero_img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774429891/imgi_729_0195b36f1078739680afc55a7595885d_xnuggr.png",
+      "category": [
+        {
+          "id": 1,
+          "name": "Promotions"
+        },
+        {
+          "id": 2,
+          "name": "Easter Deals"
+        },
+        {
+          "id": 3,
+          "name": "Super Saver deals"
+        },
+        {
+          "id": 4,
+          "name": "Combos"
+        },
+        {
+          "id": 5,
+          "name": "Bear Meals"
+        },
+        {
+          "id": 6,
+          "name": "Deals"
+        },
+        {
+          "id": 7,
+          "name": "Pizza"
+        },
+        {
+          "id": 8,
+          "name": "Corporate Deals"
+        }
+      ]
     },
     {
       "id": 3,
@@ -48,7 +116,8 @@
       "createdBy": 1,
       "name": "LATTE 8oz",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190098/imgi_3_42534f17dfceb26f9246ae52c55c8487_hjbcha.png",
-      "price": 3500
+      "price": 3500,
+      "categoryId": 4
     },
     {
       "id": 2,
@@ -81,6 +150,49 @@
     },
     {
       "id": 8,
+      "createdBy": 2,
+      "name": "Shawarma Pizza",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190096/imgi_739_11ee8693dfbd5d18a07180472cfacf06_dnrwum.webp",
+      "price": 18900
+    },
+    {
+      "id": 9,
+      "createdBy": 1,
+      "name": "LATTE 8oz",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190098/imgi_3_42534f17dfceb26f9246ae52c55c8487_hjbcha.png",
+      "price": 3500
+    },
+    {
+      "id": 10,
+      "createdBy": 1,
+      "name": "ASSORTED",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190093/imgi_6_ed98bf17c2350724afaf32aa9a1e697b_lfwt3v.jpg",
+      "price": 21000
+    },
+    {
+      "id": 11,
+      "createdBy": 1,
+      "name": "JOY BOX OG",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_3_a5d01a7f4757ea9ab30212daffc169de_jjn47s.jpg",
+      "price": 4400
+    },
+
+    {
+      "id": 12,
+      "createdBy": 2,
+      "name": "Dodo BBQ",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_737_11ef1cfefac2305bb20b0b2349b787d9_p9myix.webp",
+      "price": 10600
+    },
+    {
+      "id": 13,
+      "createdBy": 2,
+      "name": "Sweet Chili Chicken",
+      "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190094/imgi_740_11ee86927844f9a1abaa10c6cf62f3ef_rfcd6i.webp",
+      "price": 18900
+    },
+    {
+      "id": 14,
       "createdBy": 2,
       "name": "Shawarma Pizza",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190096/imgi_739_11ee8693dfbd5d18a07180472cfacf06_dnrwum.webp",

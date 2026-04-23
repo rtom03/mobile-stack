@@ -41,10 +41,10 @@ const getAllItems = async () => {
 
 const getItemsByBrand = async (brandId: number) => {
   const url = `${BASE_URL}/items?createdBy=${brandId}`;
-  console.log("Full URL:", url); // 👈 paste this in your browser
+  // console.log("Full URL:", url); // 👈 paste this in your browser
   try {
     const response = await fetch(url);
-    console.log("Status:", response.status);
+    // console.log("Status:", response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -53,7 +53,7 @@ const getItemsByBrand = async (brandId: number) => {
     }
 
     const data = await response.json();
-    console.log("Data:", data); // 👈 see the actual response shape
+    // console.log("Data:", data); // 👈 see the actual response shape
     return data;
   } catch (err) {
     console.error("Raw fetch error:", err); // 👈 full error, not just message
