@@ -162,7 +162,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.root}>
       <StatusBar barStyle="dark-content" backgroundColor="rgb(244, 65, 0)" />
-
+      {/* <SafeScreen> */}
       <ScrollView
         style={styles.scroll}
         showsVerticalScrollIndicator={false}
@@ -276,6 +276,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
+      {/* </SafeScreen> */}
 
       {/* ── Bottom Navigation ── */}
     </View>

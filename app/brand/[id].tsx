@@ -1,9 +1,12 @@
+import { AppText } from "@/components/AppText";
+import BrandHeader from "@/components/BrandHeader";
 import { Category } from "@/constants/idx.type";
 import { getItemsByBrand } from "@/services/api";
 import { Ionicons } from "@expo/vector-icons";
-import { router, Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Item {
   id: string;
@@ -30,7 +33,7 @@ export default function DetailsScreen() {
   const brandId = parseInt(id);
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   // const tabScrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -47,72 +50,13 @@ export default function DetailsScreen() {
     };
     getItemByBrand();
   }, [brandId]);
+  const insets = useSafeAreaInsets();
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <Stack.Screen options={{ headerShown: false }} />
-
-      <View
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          position: "absolute",
-          top: 20,
-          width: "100%",
-          shadowColor: "#000",
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => router.back()}
-          style={{
-            left: 16,
-            backgroundColor: "#fff",
-            borderRadius: 20,
-            width: 36,
-            height: 36,
-            alignItems: "center",
-            justifyContent: "center",
-            shadowColor: "#000",
-            shadowOpacity: 0.1,
-            shadowRadius: 4,
-            elevation: 3,
-          }}
-        >
-          <Ionicons name="chevron-back" size={22} color="#1a1a1a" />
-        </TouchableOpacity>
-
-        {/* Top-right: search, heart, more */}
-        <View
-          style={{
-            position: "absolute",
-            right: 16,
-            flexDirection: "row",
-            gap: 8,
-          }}
-        >
-          {(["search", "heart-outline", "ellipsis-vertical"] as const).map(
-            (icon) => (
-              <TouchableOpacity
-                key={icon}
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: 20,
-                  width: 36,
-                  height: 36,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  shadowColor: "#000",
-                  shadowOpacity: 0.1,
-                  shadowRadius: 4,
-                  elevation: 3,
-                }}
-              >
-                <Ionicons name={icon} size={18} color="#1a1a1a" />
-              </TouchableOpacity>
-            ),
-          )}
-        </View>
-      </View>
+      {/* brand header */}
+      <BrandHeader />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* ── HERO IMAGE ──────────────────────────────────────────────── */}
@@ -122,24 +66,19 @@ export default function DetailsScreen() {
             style={{ width: "100%", height: "80%" }}
             resizeMode="cover"
           />
-
-          {/* Back button */}
         </View>
 
         {/* ── BRAND INFO ──────────────────────────────────────────────── */}
-        <View
-          style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}
-        >
-          <Text
+        <View style={{ paddingHorizontal: 20 }}>
+          <AppText
+            variant="h2"
             style={{
-              fontSize: 26,
-              fontWeight: "800",
               color: "#1a1a1a",
               marginBottom: 10,
             }}
           >
             {name}
-          </Text>
+          </AppText>
 
           {/* Same prices badge */}
           <View
@@ -160,9 +99,9 @@ export default function DetailsScreen() {
               color="#444"
               style={{ marginRight: 5 }}
             />
-            <Text style={{ fontSize: 13, color: "#444" }}>
+            <AppText style={{ fontSize: 13, color: "#444" }}>
               Same prices as in store ›
-            </Text>
+            </AppText>
           </View>
 
           {/* Stats row */}
@@ -183,11 +122,7 @@ export default function DetailsScreen() {
               >
                 <Ionicons name="thumbs-up-outline" size={24} color="#2E7D32" />
               </View>
-              <Text
-                style={{ fontSize: 13, fontWeight: "700", color: "#1a1a1a" }}
-              >
-                {ratings}%
-              </Text>
+              <AppText style={{ color: "#1a1a1a" }}>{ratings}%</AppText>
             </View>
 
             {/* Delivery time */}
@@ -204,11 +139,7 @@ export default function DetailsScreen() {
               >
                 <Ionicons name="time-outline" size={24} color="#b8860b" />
               </View>
-              <Text
-                style={{ fontSize: 13, fontWeight: "700", color: "#1a1a1a" }}
-              >
-                15-25'
-              </Text>
+              <AppText style={{ color: "#1a1a1a" }}>15-25'</AppText>
             </View>
 
             {/* Delivery fee — strikethrough + red Free */}
@@ -226,7 +157,7 @@ export default function DetailsScreen() {
                 <Ionicons name="bicycle-outline" size={24} color="#b8860b" />
               </View>
               <View style={{ alignItems: "center", gap: 2 }}>
-                <Text
+                <AppText
                   style={{
                     fontSize: 11,
                     color: "#aaa",
@@ -234,7 +165,7 @@ export default function DetailsScreen() {
                   }}
                 >
                   ₦199.00
-                </Text>
+                </AppText>
                 <View
                   style={{
                     backgroundColor: "#e53935",
@@ -243,11 +174,7 @@ export default function DetailsScreen() {
                     paddingVertical: 2,
                   }}
                 >
-                  <Text
-                    style={{ fontSize: 12, fontWeight: "700", color: "#fff" }}
-                  >
-                    Free
-                  </Text>
+                  <AppText style={{ color: "#fff" }}>Free</AppText>
                 </View>
               </View>
             </View>
@@ -263,8 +190,8 @@ export default function DetailsScreen() {
           }}
         >
           <ScrollView
-            // ref={tabScrollRef}
             horizontal
+            // ref={tabScrollRef}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 12 }}
           >
@@ -281,15 +208,15 @@ export default function DetailsScreen() {
                   marginRight: 4,
                 }}
               >
-                <Text
+                <AppText
                   style={{
                     fontSize: 14,
-                    fontWeight: activeTab === tab.id ? "700" : "500",
+                    // fontWeight: activeTab === tab.id ? "700" : "500",
                     color: activeTab === tab.id ? "#1a1a1a" : "#999",
                   }}
                 >
                   {tab.name}
-                </Text>
+                </AppText>
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -307,9 +234,9 @@ export default function DetailsScreen() {
               marginBottom: 16,
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: "800", color: "#1a1a1a" }}>
+            <AppText variant="span" style={{ color: "#1a1a1a" }}>
               Top sellers
-            </Text>
+            </AppText>
             <TouchableOpacity
               style={{
                 width: 36,
@@ -324,102 +251,102 @@ export default function DetailsScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Horizontal product cards */}
+          {/* Vertical product cards */}
           <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 20, gap: 14 }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              gap: 12,
+            }}
           >
             {items.map((item) => (
               <View
                 key={item.id}
                 style={{
-                  width: 150,
-                  borderRadius: 16,
-                  backgroundColor: "#fff",
-                  shadowColor: "#000",
-                  shadowOpacity: 0.06,
-                  shadowRadius: 8,
-                  shadowOffset: { width: 0, height: 2 },
-                  elevation: 3,
-                  overflow: "hidden",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  padding: 12,
+                  paddingVertical: 40,
+                  gap: 12,
+                  borderBottomWidth: 0.3,
+                  borderBottomColor: "gray",
                 }}
               >
                 {/* Image */}
                 <View
-                  style={{ width: "100%", height: 120, position: "relative" }}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 10,
+                    backgroundColor: "#f5f5f5",
+                    overflow: "hidden",
+                    flexShrink: 0,
+                    padding: 8,
+                  }}
                 >
                   {item.img ? (
                     <Image
                       source={{ uri: item.img }}
-                      style={{ width: "80%", height: "100%" }}
-                      resizeMode="cover"
+                      style={{ width: "100%", height: "100%" }}
+                      resizeMode="center"
                     />
                   ) : (
                     <View
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        backgroundColor: "#f5f5f5",
+                        flex: 1,
                         alignItems: "center",
                         justifyContent: "center",
                       }}
                     >
-                      <Ionicons name="image-outline" size={32} color="#ccc" />
+                      <Ionicons name="image-outline" size={28} color="#ccc" />
                     </View>
                   )}
-
-                  {/* + button */}
-                  <TouchableOpacity
-                    style={{
-                      position: "absolute",
-                      bottom: 8,
-                      right: 8,
-                      width: 30,
-                      height: 30,
-                      borderRadius: 15,
-                      backgroundColor: "#fff",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      shadowColor: "#000",
-                      shadowOpacity: 0.12,
-                      shadowRadius: 4,
-                      elevation: 3,
-                    }}
-                  >
-                    <Ionicons name="add" size={20} color="#1a1a1a" />
-                  </TouchableOpacity>
                 </View>
 
-                {/* Card body */}
-                <View style={{ padding: 10 }}>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      fontWeight: "700",
-                      color: "#1a1a1a",
-                      marginBottom: 4,
-                    }}
-                    numberOfLines={2}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      fontWeight: "600",
-                      color: "#1a1a1a",
-                    }}
-                  >
-                    ₦{item.price.toLocaleString("en-NG")}.00
-                  </Text>
+                {/* Info */}
+                <View style={{ flexDirection: "column", gap: 5 }}>
+                  <View style={{ flexDirection: "row", gap: 10 }}>
+                    <AppText
+                      numberOfLines={2}
+                      style={{
+                        color: "#1a1a1a",
+                        marginBottom: 4,
+                      }}
+                    >
+                      {item.name}
+                    </AppText>
+                    <AppText
+                      style={{
+                        color: "#453224",
+                      }}
+                    >
+                      ₦{item.price.toLocaleString("en-NG")}.00
+                    </AppText>
+                  </View>
+                  <View>
+                    <AppText>description</AppText>
+                    <TouchableOpacity
+                      style={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: 16,
+                        backgroundColor: "#1a1a1a",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Ionicons name="add" size={20} color="#fff" />
+                    </TouchableOpacity>
+                  </View>
                 </View>
+
+                {/* Add button */}
               </View>
             ))}
           </ScrollView>
         </View>
-
-        <View style={{ height: 60 }} />
       </ScrollView>
     </View>
   );

@@ -1,4 +1,5 @@
-const BASE_URL = "http://172.20.10.2:5000"; // change to your IP
+const BASE_URL = "http://192.168.1.179:5000"; // change to your IP
+// const BASE_URL = "http://172.20.10.2:5000"; // change to your IP
 
 const getAllBrands = async () => {
   try {
@@ -62,3 +63,4 @@ const getItemsByBrand = async (brandId: number) => {
 };
 
 export { getAllBrands, getAllItems, getBrandById, getItemsByBrand };
+
