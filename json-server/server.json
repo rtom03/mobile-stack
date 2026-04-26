@@ -116,6 +116,7 @@
       "createdBy": 1,
       "name": "LATTE 8oz",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190098/imgi_3_42534f17dfceb26f9246ae52c55c8487_hjbcha.png",
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
       "price": 3500,
       "categoryId": 4
     },
@@ -124,14 +125,18 @@
       "createdBy": 1,
       "name": "ASSORTED",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190093/imgi_6_ed98bf17c2350724afaf32aa9a1e697b_lfwt3v.jpg",
-      "price": 21000
+      "price": 21000,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 3,
       "createdBy": 1,
       "name": "JOY BOX OG",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_3_a5d01a7f4757ea9ab30212daffc169de_jjn47s.jpg",
-      "price": 4400
+      "price": 4400,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
 
     {
@@ -139,42 +144,54 @@
       "createdBy": 2,
       "name": "Dodo BBQ",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_737_11ef1cfefac2305bb20b0b2349b787d9_p9myix.webp",
-      "price": 10600
+      "price": 10600,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 7,
       "createdBy": 2,
       "name": "Sweet Chili Chicken",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190094/imgi_740_11ee86927844f9a1abaa10c6cf62f3ef_rfcd6i.webp",
-      "price": 18900
+      "price": 18900,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 8,
       "createdBy": 2,
       "name": "Shawarma Pizza",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190096/imgi_739_11ee8693dfbd5d18a07180472cfacf06_dnrwum.webp",
-      "price": 18900
+      "price": 18900,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 9,
       "createdBy": 1,
       "name": "LATTE 8oz",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190098/imgi_3_42534f17dfceb26f9246ae52c55c8487_hjbcha.png",
-      "price": 3500
+      "price": 3500,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 10,
       "createdBy": 1,
       "name": "ASSORTED",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190093/imgi_6_ed98bf17c2350724afaf32aa9a1e697b_lfwt3v.jpg",
-      "price": 21000
+      "price": 21000,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 11,
       "createdBy": 1,
       "name": "JOY BOX OG",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_3_a5d01a7f4757ea9ab30212daffc169de_jjn47s.jpg",
-      "price": 4400
+      "price": 4400,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
 
     {
@@ -182,21 +199,27 @@
       "createdBy": 2,
       "name": "Dodo BBQ",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190086/imgi_737_11ef1cfefac2305bb20b0b2349b787d9_p9myix.webp",
-      "price": 10600
+      "price": 10600,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 13,
       "createdBy": 2,
       "name": "Sweet Chili Chicken",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190094/imgi_740_11ee86927844f9a1abaa10c6cf62f3ef_rfcd6i.webp",
-      "price": 18900
+      "price": 18900,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     },
     {
       "id": 14,
       "createdBy": 2,
       "name": "Shawarma Pizza",
       "img": "https://res.cloudinary.com/djnxc7hp4/image/upload/v1774190096/imgi_739_11ee8693dfbd5d18a07180472cfacf06_dnrwum.webp",
-      "price": 18900
+      "price": 18900,
+      "desc": "Look, it’s a Pizza Duet! Two Medium Pizzas + Two Coca-Cola Drinks _ the perfect feel-good combo for sharing, snacking, and smiling.",
+      "categoryId": 4
     }
   ],
   "orders": []

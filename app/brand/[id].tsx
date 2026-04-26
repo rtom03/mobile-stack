@@ -1,28 +1,37 @@
 import { AppText } from "@/components/AppText";
 import BrandHeader from "@/components/BrandHeader";
+import ItemDetailSheet from "@/components/ItemDetailSheet";
+import MenuItemCard from "@/components/MenuItemCard";
 import { Category } from "@/constants/idx.type";
 import { getItemsByBrand } from "@/services/api";
 import { Ionicons } from "@expo/vector-icons";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 interface Item {
   id: string;
   name: string;
   price: number;
   img?: string;
+  desc: string;
   category?: string;
 }
 
 export default function DetailsScreen() {
-  const { id, name, hero_img, ratings, category } = useLocalSearchParams<{
+  const { id, name, hero_img, ratings, desc, category } = useLocalSearchParams<{
     id: string;
     name: string;
     hero_img: string;
     brand_icon: string;
     ratings: string;
+    desc: string;
     category: string;
   }>();
 
@@ -34,6 +43,8 @@ export default function DetailsScreen() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
+  const [sheetVisible, setSheetVisible] = useState(false);
+  const [qty, setQty] = useState(1);
   // const tabScrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -50,8 +61,10 @@ export default function DetailsScreen() {
     };
     getItemByBrand();
   }, [brandId]);
-  const insets = useSafeAreaInsets();
 
+  const addToCart = (item: Item[]) => {
+    return item;
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <Stack.Screen options={{ headerShown: false }} />
@@ -211,7 +224,6 @@ export default function DetailsScreen() {
                 <AppText
                   style={{
                     fontSize: 14,
-                    // fontWeight: activeTab === tab.id ? "700" : "500",
                     color: activeTab === tab.id ? "#1a1a1a" : "#999",
                   }}
                 >
@@ -223,7 +235,7 @@ export default function DetailsScreen() {
         </View>
 
         {/* ── TOP SELLERS SECTION ─────────────────────────────────────── */}
-        <View style={{ paddingTop: 20, paddingBottom: 16 }}>
+        <View style={{ paddingTop: 20 }}>
           {/* Section heading + arrow */}
           <View
             style={{
@@ -231,7 +243,6 @@ export default function DetailsScreen() {
               alignItems: "center",
               justifyContent: "space-between",
               paddingHorizontal: 20,
-              marginBottom: 16,
             }}
           >
             <AppText variant="span" style={{ color: "#1a1a1a" }}>
@@ -255,99 +266,147 @@ export default function DetailsScreen() {
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
               gap: 12,
             }}
           >
             {items.map((item) => (
-              <View
-                key={item.id}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  padding: 12,
-                  paddingVertical: 40,
-                  gap: 12,
-                  borderBottomWidth: 0.3,
-                  borderBottomColor: "gray",
-                }}
-              >
-                {/* Image */}
-                <View
-                  style={{
-                    width: 120,
-                    height: 120,
-                    borderRadius: 10,
-                    backgroundColor: "#f5f5f5",
-                    overflow: "hidden",
-                    flexShrink: 0,
-                    padding: 8,
-                  }}
-                >
-                  {item.img ? (
-                    <Image
-                      source={{ uri: item.img }}
-                      style={{ width: "100%", height: "100%" }}
-                      resizeMode="center"
-                    />
-                  ) : (
-                    <View
-                      style={{
-                        flex: 1,
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Ionicons name="image-outline" size={28} color="#ccc" />
-                    </View>
-                  )}
-                </View>
+              // <TouchableOpacity
+              //   key={item.id}
+              //   style={styles.trigger}
+              //   onPress={() => setSheetVisible(true)}
+              //   activeOpacity={0.8}
+              // >
+              //   {/* Image */}
+              //   <View
+              //     style={{
+              //       width: 120,
+              //       height: 120,
+              //       borderRadius: 10,
+              //       backgroundColor: "#f5f5f5",
+              //       overflow: "hidden",
+              //       flexShrink: 0,
+              //       padding: 8,
+              //     }}
+              //   >
+              //     {item.img ? (
+              //       <Image
+              //         source={{ uri: item.img }}
+              //         style={{ width: "100%", height: "100%" }}
+              //         resizeMode="center"
+              //       />
+              //     ) : (
+              //       <View
+              //         style={{
+              //           flex: 1,
+              //           alignItems: "center",
+              //           justifyContent: "center",
+              //         }}
+              //       >
+              //         <Ionicons name="image-outline" size={28} color="#ccc" />
+              //       </View>
+              //     )}
+              //   </View>
 
-                {/* Info */}
-                <View style={{ flexDirection: "column", gap: 5 }}>
-                  <View style={{ flexDirection: "row", gap: 10 }}>
-                    <AppText
-                      numberOfLines={2}
-                      style={{
-                        color: "#1a1a1a",
-                        marginBottom: 4,
-                      }}
-                    >
-                      {item.name}
-                    </AppText>
-                    <AppText
-                      style={{
-                        color: "#453224",
-                      }}
-                    >
-                      ₦{item.price.toLocaleString("en-NG")}.00
-                    </AppText>
-                  </View>
-                  <View>
-                    <AppText>description</AppText>
-                    <TouchableOpacity
-                      style={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: 16,
-                        backgroundColor: "#1a1a1a",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <Ionicons name="add" size={20} color="#fff" />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-
-                {/* Add button */}
-              </View>
+              //   {/* Info */}
+              //   <View style={{ flexDirection: "column", gap: 5 }}>
+              //     <View style={{ flexDirection: "row", gap: 10 }}>
+              //       <AppText
+              //         numberOfLines={1}
+              //         ellipsizeMode="tail"
+              //         style={{
+              //           color: "#1a1a1a",
+              //           marginBottom: 4,
+              //           width: "40%", // 👈 important
+              //         }}
+              //       >
+              //         {item.name}
+              //       </AppText>
+              //       <AppText
+              //         style={{
+              //           color: "#453224",
+              //         }}
+              //       >
+              //         ₦{item.price.toLocaleString("en-NG")}.00
+              //       </AppText>
+              //     </View>
+              //     <View
+              //       style={{
+              //         display: "flex",
+              //         flexDirection: "row",
+              //         gap: 25,
+              //         // justifyContent: "space-between",
+              //         paddingVertical: 10,
+              //       }}
+              //     >
+              //       <AppText
+              //         numberOfLines={3}
+              //         ellipsizeMode="tail"
+              //         style={{ fontSize: 10, width: 150 }}
+              //       >
+              //         {item.desc}
+              //       </AppText>
+              //     </View>
+              //     <TouchableOpacity
+              //       style={{
+              //         width: 32,
+              //         height: 32,
+              //         borderRadius: 16,
+              //         backgroundColor: "#1a1a1a",
+              //         alignItems: "center",
+              //         justifyContent: "center",
+              //         marginLeft: "auto", // 👈 key line
+              //         flexShrink: 0,
+              //       }}
+              //     >
+              //       <Ionicons name="add" size={20} color="#fff" />
+              //     </TouchableOpacity>
+              //   </View>
+              //   {/* Add button */}
+              // </TouchableOpacity>
+              <MenuItemCard
+                item={item}
+                onPress={() => setSheetVisible(true)}
+                onAdd={() => addToCart(item)}
+              />
             ))}
+            <ItemDetailSheet
+              visible={sheetVisible}
+              onClose={() => setSheetVisible(false)}
+              quantity={qty}
+              onQuantityChange={setQty}
+              onAddToCart={() => {
+                setSheetVisible(false);
+                // handle cart logic here
+              }}
+            />
           </ScrollView>
         </View>
       </ScrollView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#F5F5F5",
+  },
+  trigger: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    paddingVertical: 40,
+    gap: 12,
+    borderBottomWidth: 0.3,
+    borderBottomColor: "gray",
+  },
+  triggerText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "700",
+  },
+});
