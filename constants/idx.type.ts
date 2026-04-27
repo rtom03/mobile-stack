@@ -15,6 +15,7 @@ export interface Brand {
   badgeType: BadgeType;
   badgeText: string | null;
   length: number;
+  desc: string;
   category: Category[];
 }
 [];

@@ -75,6 +75,7 @@ export default function RestaurantRankingList({ brands }: { brands: Brand[] }) {
                 brand_icon: item.brand_icon,
                 hero_img: item.hero_img,
                 ratings: item.ratings,
+                desc: item.desc,
                 category: JSON.stringify(item.category),
               },
             })

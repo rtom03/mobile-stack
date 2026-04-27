@@ -1,4 +1,5 @@
 import { AppText } from "@/components/AppText";
+import { router } from "expo-router";
 import React from "react";
 import {
   SafeAreaView,
@@ -127,6 +128,11 @@ export default function OrdersScreen() {
               paddingVertical: 16,
               borderBottomWidth: index < PENDING_ORDERS.length - 1 ? 1 : 0,
               borderBottomColor: "#f0f0f0",
+            }}
+            onPress={() => {
+              router.push({
+                pathname: "/cart/[id]",
+              });
             }}
           >
             {/* Store Icon */}
