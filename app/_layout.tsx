@@ -15,9 +15,11 @@ import {
   Outfit_600SemiBold,
   Outfit_700Bold,
 } from "@expo-google-fonts/outfit";
+import { QueryClientProvider } from "@tanstack/react-query";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { queryClient } from "./api/queryClient";
 
 SplashScreen.preventAutoHideAsync().catch(console.warn);
 
@@ -39,18 +41,20 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
-    <ThemeProvider value={colorScheme === "light" ? DarkTheme : DefaultTheme}>
-      <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="brand" options={{ headerShown: false }} />
-          <Stack.Screen name="cart" options={{ headerShown: false }} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={colorScheme === "light" ? DarkTheme : DefaultTheme}>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="brand" options={{ headerShown: false }} />
+            <Stack.Screen name="cart" options={{ headerShown: false }} />
 
-          {/* ✅ hides "brand" header */}
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </SafeAreaProvider>
-    </ThemeProvider>
+            {/* ✅ hides "brand" header */}
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

@@ -14,8 +14,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useCartStore } from "../store/cartStore";
 
-interface Item {
+export interface Item {
   id: string;
   name: string;
   price: number;
@@ -45,7 +46,11 @@ export default function DetailsScreen() {
   const [activeTab, setActiveTab] = useState(1);
   const [sheetVisible, setSheetVisible] = useState(false);
   const [qty, setQty] = useState(1);
-  // const tabScrollRef = useRef<ScrollView>(null);
+  const [selected, setSelected] = useState<(Item & { qty: number })[]>([]);
+  const [selectedItem, setSelectedItem] = useState<
+    (Item & { qty: number }) | null
+  >(null); // sheet display
+  const { addToCart, items: cartItems } = useCartStore();
 
   useEffect(() => {
     const getItemByBrand = async () => {
@@ -62,9 +67,23 @@ export default function DetailsScreen() {
     getItemByBrand();
   }, [brandId]);
 
-  const addToCart = (item: Item[]) => {
-    return item;
+  // const addToCart = useCallback((item: Item) => {
+  //   setSelected((prev) => {
+  //     const existing = prev.find((p) => p.id === item.id);
+  //     if (existing) {
+  //       return prev.map(
+  //         (p) => (p.id === item.id ? { ...p, qty: (p.qty || 1) + 1 } : p), // ✅ p.qty not qty
+  //       );
+  //     }
+  //     return [...prev, { ...item, qty: 1 }];
+  //   });
+  //   console.log("KKKK" + item);
+  // }, []);
+
+  const handleQuantityChange = (newQty: number) => {
+    setSelectedItem((prev) => (prev ? { ...prev, qty: newQty } : null));
   };
+
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <Stack.Screen options={{ headerShown: false }} />
@@ -263,127 +282,48 @@ export default function DetailsScreen() {
           </View>
 
           {/* Vertical product cards */}
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              paddingHorizontal: 10,
-              paddingVertical: 5,
-              gap: 12,
-            }}
-          >
-            {items.map((item) => (
-              // <TouchableOpacity
-              //   key={item.id}
-              //   style={styles.trigger}
-              //   onPress={() => setSheetVisible(true)}
-              //   activeOpacity={0.8}
-              // >
-              //   {/* Image */}
-              //   <View
-              //     style={{
-              //       width: 120,
-              //       height: 120,
-              //       borderRadius: 10,
-              //       backgroundColor: "#f5f5f5",
-              //       overflow: "hidden",
-              //       flexShrink: 0,
-              //       padding: 8,
-              //     }}
-              //   >
-              //     {item.img ? (
-              //       <Image
-              //         source={{ uri: item.img }}
-              //         style={{ width: "100%", height: "100%" }}
-              //         resizeMode="center"
-              //       />
-              //     ) : (
-              //       <View
-              //         style={{
-              //           flex: 1,
-              //           alignItems: "center",
-              //           justifyContent: "center",
-              //         }}
-              //       >
-              //         <Ionicons name="image-outline" size={28} color="#ccc" />
-              //       </View>
-              //     )}
-              //   </View>
 
-              //   {/* Info */}
-              //   <View style={{ flexDirection: "column", gap: 5 }}>
-              //     <View style={{ flexDirection: "row", gap: 10 }}>
-              //       <AppText
-              //         numberOfLines={1}
-              //         ellipsizeMode="tail"
-              //         style={{
-              //           color: "#1a1a1a",
-              //           marginBottom: 4,
-              //           width: "40%", // 👈 important
-              //         }}
-              //       >
-              //         {item.name}
-              //       </AppText>
-              //       <AppText
-              //         style={{
-              //           color: "#453224",
-              //         }}
-              //       >
-              //         ₦{item.price.toLocaleString("en-NG")}.00
-              //       </AppText>
-              //     </View>
-              //     <View
-              //       style={{
-              //         display: "flex",
-              //         flexDirection: "row",
-              //         gap: 25,
-              //         // justifyContent: "space-between",
-              //         paddingVertical: 10,
-              //       }}
-              //     >
-              //       <AppText
-              //         numberOfLines={3}
-              //         ellipsizeMode="tail"
-              //         style={{ fontSize: 10, width: 150 }}
-              //       >
-              //         {item.desc}
-              //       </AppText>
-              //     </View>
-              //     <TouchableOpacity
-              //       style={{
-              //         width: 32,
-              //         height: 32,
-              //         borderRadius: 16,
-              //         backgroundColor: "#1a1a1a",
-              //         alignItems: "center",
-              //         justifyContent: "center",
-              //         marginLeft: "auto", // 👈 key line
-              //         flexShrink: 0,
-              //       }}
-              //     >
-              //       <Ionicons name="add" size={20} color="#fff" />
-              //     </TouchableOpacity>
-              //   </View>
-              //   {/* Add button */}
-              // </TouchableOpacity>
+          <View style={{ paddingHorizontal: 10, paddingVertical: 5, gap: 12 }}>
+            {items.map((item) => (
               <MenuItemCard
+                key={item.id}
                 item={item}
-                onPress={() => setSheetVisible(true)}
-                onAdd={() => addToCart(item)}
+                onPress={() => {
+                  setSelectedItem({ ...item, qty: 1 });
+                  setSheetVisible(true); // ← open sheet
+                }}
+                onAdd={() => {
+                  console.log("onAdd fired", item.name); // test this logs
+                  addToCart(item);
+                }}
               />
             ))}
-            <ItemDetailSheet
-              visible={sheetVisible}
-              onClose={() => setSheetVisible(false)}
-              quantity={qty}
-              onQuantityChange={setQty}
-              onAddToCart={() => {
-                setSheetVisible(false);
-                // handle cart logic here
-              }}
-            />
-          </ScrollView>
+          </View>
         </View>
       </ScrollView>
+      <ItemDetailSheet
+        deal={selectedItem}
+        cart={items}
+        visible={sheetVisible}
+        onClose={() => setSheetVisible(false)}
+        quantity={qty}
+        onQuantityChange={handleQuantityChange}
+        onAddToCart={() => {
+          if (selectedItem) {
+            addToCart(
+              {
+                id: selectedItem.id,
+                name: selectedItem.name,
+                price: selectedItem.price,
+                img: selectedItem.img,
+                desc: selectedItem.desc,
+              },
+              selectedItem.qty,
+            ); // ✅ pass qty user selected in sheet
+          }
+          setSheetVisible(false);
+        }}
+      />
     </View>
   );
 }
