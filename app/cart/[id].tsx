@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useCartStore } from "../store/cartStore";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -165,25 +166,14 @@ function SuggestionCard({
 export default function CartScreen() {
   const router = useRouter();
   const [cart, setCart] = useState<CartItem[]>(INITIAL_CART);
+  const { items, totalPrice, removeFromCart, incrementQty, decrementQty } =
+    useCartStore();
 
-  const totalPrice = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   const totalOriginal = cart.reduce(
     (sum, i) => sum + i.originalPrice * i.qty,
     0,
   );
   const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-
-  const updateQty = (id: string, delta: number) => {
-    setCart((prev) =>
-      prev
-        .map((i) => (i.id === id ? { ...i, qty: i.qty + delta } : i))
-        .filter((i) => i.qty > 0),
-    );
-  };
-
-  const removeItem = (id: string) => {
-    setCart((prev) => prev.filter((i) => i.id !== id));
-  };
 
   const clearCart = () => setCart([]);
 
@@ -237,10 +227,10 @@ export default function CartScreen() {
         {cart.length === 0 ? (
           <Text style={styles.emptyText}>Your cart is empty</Text>
         ) : (
-          cart.map((item) => (
+          items.map((item) => (
             <View key={item.id} style={styles.cartItem}>
               <Image
-                source={{ uri: item.image }}
+                source={{ uri: item.img }}
                 style={styles.cartItemImage}
                 resizeMode="cover"
               />
@@ -248,23 +238,21 @@ export default function CartScreen() {
                 <Text style={styles.cartItemName}>{item.name}</Text>
                 <View style={styles.cartItemPriceRow}>
                   <Text style={styles.cartItemPrice}>{fmt(item.price)}</Text>
-                  <Text style={styles.cartItemOriginal}>
-                    {fmt(item.originalPrice)}
-                  </Text>
+                  <Text style={styles.cartItemOriginal}>{fmt(item.price)}</Text>
                 </View>
               </View>
               <View style={styles.cartItemRight}>
                 <QtyControl
                   qty={item.qty}
-                  onDec={() => updateQty(item.id, -1)}
-                  onInc={() => updateQty(item.id, 1)}
-                  onDelete={() => removeItem(item.id)}
+                  onDec={() => decrementQty(item.id)}
+                  onInc={() => incrementQty(item.id)}
+                  onDelete={() => removeFromCart(item.id)}
                 />
-                {item.discount > 0 && (
+                {/* {item.discount > 0 && (
                   <View style={styles.itemDiscBadge}>
                     <Text style={styles.itemDiscText}>-{item.discount}%</Text>
                   </View>
-                )}
+                )} */}
               </View>
             </View>
           ))
@@ -297,7 +285,7 @@ export default function CartScreen() {
       {/* ── Fixed checkout footer ── */}
       <View style={styles.footer}>
         <View style={styles.footerPrices}>
-          <Text style={styles.footerPrice}>{fmt(totalPrice)}</Text>
+          {/* <Text style={styles.footerPrice}>{fmt(totalPrice)}</Text> */}
           <Text style={styles.footerOriginal}>{fmt(totalOriginal)}</Text>
         </View>
         <TouchableOpacity style={styles.checkoutBtn} activeOpacity={0.85}>

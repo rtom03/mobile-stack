@@ -24,6 +24,7 @@ export default function MenuItemCard({
       style={styles.card}
       onPress={onPress}
       activeOpacity={0.75}
+      key={item.id}
     >
       {/* Image */}
       <View style={styles.imageWrap}>
@@ -52,13 +53,10 @@ export default function MenuItemCard({
           <Text style={styles.price}>
             ₦{item.price.toLocaleString("en-NG")}.00
           </Text>
-          {/* + button pinned to right */}
+
           <TouchableOpacity
             style={styles.addBtn}
-            onPress={(e) => {
-              e.stopPropagation();
-              onAdd();
-            }}
+            onPress={onAdd} // ✅ no stopPropagation needed
             activeOpacity={0.8}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
